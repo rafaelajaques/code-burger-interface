@@ -35,7 +35,7 @@ export const ContainerItems = styled.div`
     line-height: 28px;
     color: #ffffff;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 25px;
   }
 `;
 
@@ -49,11 +49,11 @@ export const Label = styled.p`
 
 export const Input = styled.input`
   width: 100%;
-  height: 35px;
+  height: 30px;
   background: #ffffff;
   box-shadow: 3px 3px 10px rgba(74, 144, 226, 0.19);
   border-radius: 5px;
-  border: none;
+  border: ${(props) => (props.error ? '2px solid #CC1717' : 'none')};
   padding-left: 10px;
 `;
 
@@ -91,4 +91,12 @@ export const SignInLink = styled.p`
     cursor: pointer;
     text-decoration: underline;
   }
+`;
+
+export const ErrorMessage = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #cc1717;
+  margin-top: 2px;
 `;
