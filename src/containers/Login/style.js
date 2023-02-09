@@ -19,10 +19,15 @@ export const ContainerItems = styled.div`
   box-shadow: 0px 4px 15px rgba(74, 144, 226, 0.24);
   border-radius: 0 10px 10px 0;
   height: 70%;
-  padding: 25px 75px;
+  padding: 25px 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
 
   h1 {
     font-weight: 500;
