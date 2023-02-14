@@ -9,10 +9,10 @@ import {
   ContainerItems,
   Label,
   Input,
-  Button,
   SignInLink,
   ErrorMessage,
 } from './style';
+import Button from '../../components/Button';
 import LoginImg from '../../assets/login-image.svg';
 import Logo from '../../assets/logo.svg';
 
@@ -55,7 +55,9 @@ function Login() {
           <Input type="password" {...register('password')} error={errors.password?.message} />
           <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
-          <Button type="submit">Entrar</Button>
+          <Button type="submit" style={{ marginTop: 40, marginBottom: 15 }}>
+            Entrar
+          </Button>
         </form>
         <SignInLink>
           Não possui uma conta? <a href="https://nenhum.com">Cadastre-se</a>
