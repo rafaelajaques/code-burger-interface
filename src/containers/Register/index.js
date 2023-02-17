@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import {
   Container,
@@ -96,7 +97,7 @@ function Register() {
           </Button>
         </form>
         <SignInLink>
-          Já possui uma conta? <a href="https://nenhum.com">Entrar</a>
+          Já possui uma conta? <Link to="/login">Entrar</Link>
         </SignInLink>
       </ContainerItems>
     </Container>

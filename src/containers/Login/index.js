@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import {
   Container,
@@ -72,7 +73,7 @@ function Login() {
           </Button>
         </form>
         <SignInLink>
-          Não possui uma conta? <a href="https://nenhum.com">Cadastre-se</a>
+          Não possui uma conta? <Link to="/cadastro">Cadastre-se</Link>
         </SignInLink>
       </ContainerItems>
     </Container>
