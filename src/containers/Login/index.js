@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import {
   Container,
@@ -20,6 +20,7 @@ import Logo from '../../assets/logo.svg';
 import { useUser } from '../../hooks/UserContext';
 
 function Login() {
+  const navigate = useNavigate();
   const { putUserData } = useUser();
 
   const schema = Yup.object().shape({
@@ -51,6 +52,10 @@ function Login() {
     );
 
     putUserData(data);
+
+    setTimeout(() => {
+      navigate('/');
+    }, 1000);
   };
 
   return (
