@@ -14,12 +14,12 @@ import {
   SignInLink,
   ErrorMessage,
 } from './style';
-import Button from '../../components/Button';
+import { Button } from '../../components';
 import LoginImg from '../../assets/login-image.svg';
 import Logo from '../../assets/logo.svg';
 import { useUser } from '../../hooks/UserContext';
 
-function Login() {
+export function Login() {
   const navigate = useNavigate();
   const { putUserData } = useUser();
 
@@ -84,5 +84,3 @@ function Login() {
     </Container>
   );
 }
-
-export default Login;

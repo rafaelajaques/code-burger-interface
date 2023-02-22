@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -7,7 +8,7 @@ import api from '../../services/api';
 import { Container, CategoryImg, ContainerItems, Image, Button } from './style';
 import formatCurrency from '../../utils/formatCurrency';
 
-function OffersCarousel() {
+export function OffersCarousel() {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
@@ -50,5 +51,3 @@ function OffersCarousel() {
     </Container>
   );
 }
-
-export default OffersCarousel;

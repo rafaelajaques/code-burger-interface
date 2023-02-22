@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
@@ -15,11 +16,11 @@ import {
   SignInLink,
   ErrorMessage,
 } from './style';
-import Button from '../../components/Button';
+import { Button } from '../../components';
 import RegisterImg from '../../assets/register-image.svg';
 import Logo from '../../assets/logo.svg';
 
-function Register() {
+export function Register() {
   const schema = Yup.object().shape({
     name: Yup.string().required('O nome é obrigatório'),
     email: Yup.string().email('Digite um e-mail válido').required('O e-mail é obrigatório'),
@@ -103,5 +104,3 @@ function Register() {
     </Container>
   );
 }
-
-export default Register;
