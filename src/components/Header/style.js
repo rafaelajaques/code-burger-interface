@@ -38,7 +38,8 @@ export const PageLink = styled.a`
   font-size: 16px;
   line-height: 19px;
   align-items: center;
-  color: #555555;
+  color: ${(props) => (props.isActive ? '#9758A6' : '#555555')};
+  font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
 `;
 
 export const Line = styled.div`
