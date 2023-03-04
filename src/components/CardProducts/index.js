@@ -15,7 +15,9 @@ export function CardProducts({ product }) {
       <div>
         <ProductName>{product.name}</ProductName>
         <ProductPrice>{product.formatedPrice}</ProductPrice>
-        <Button onClick={() => putProductInCart(product)}>Adicionar</Button>
+        <Button onClick={() => putProductInCart(product)} style={{ width: 150 }}>
+          Adicionar
+        </Button>
       </div>
     </Container>
   );
