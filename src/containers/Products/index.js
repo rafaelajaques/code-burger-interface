@@ -6,7 +6,8 @@ import api from '../../services/api';
 import { CardProducts } from '../../components';
 import formatCurrency from '../../utils/formatCurrency';
 
-export function Products() {
+export function Products(props) {
+  console.log(props);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [filtredProducts, setFiltredProducts] = useState([]);
