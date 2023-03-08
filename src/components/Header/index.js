@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Cart from '../../assets/cart.svg';
 import Person from '../../assets/person.svg';
 import { useUser } from '../../hooks/UserContext';
@@ -15,7 +16,7 @@ import {
   PageLinkExit,
 } from './style';
 
-export function Header() {
+export function Header({ children }) {
   const { logout } = useUser();
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,32 +26,40 @@ export function Header() {
     navigate('/login');
   };
   return (
-    <Container>
-      <ContainerLeft>
-        <PageLink onClick={() => navigate('/')} isActive={location.pathname === '/'}>
-          Home
-        </PageLink>
-        <PageLink
-          onClick={() => navigate('/produtos')}
-          isActive={location.pathname.includes('produtos')}
-        >
-          Ver Produtos
-        </PageLink>
-      </ContainerLeft>
+    <>
+      <Container>
+        <ContainerLeft>
+          <PageLink onClick={() => navigate('/')} isActive={location.pathname === '/'}>
+            Home
+          </PageLink>
+          <PageLink
+            onClick={() => navigate('/produtos')}
+            isActive={location.pathname.includes('produtos')}
+          >
+            Ver Produtos
+          </PageLink>
+        </ContainerLeft>
 
-      <ContainerRight>
-        <PageLink onClick={() => navigate('/carrinho')}>
-          <img src={Cart} alt="carrinho" />
-        </PageLink>
-        <Line />
-        <PageLink>
-          <img src={Person} alt="usuario" />
-        </PageLink>
-        <ContainerText>
-          <p>Olá, Rafaela!</p>
-          <PageLinkExit onClick={logoutUser}>Sair</PageLinkExit>
-        </ContainerText>
-      </ContainerRight>
-    </Container>
+        <ContainerRight>
+          <PageLink onClick={() => navigate('/carrinho')}>
+            <img src={Cart} alt="carrinho" />
+          </PageLink>
+          <Line />
+          <PageLink>
+            <img src={Person} alt="usuario" />
+          </PageLink>
+          <ContainerText>
+            <p>Olá, Rafaela!</p>
+            <PageLinkExit onClick={logoutUser}>Sair</PageLinkExit>
+          </ContainerText>
+        </ContainerRight>
+      </Container>
+
+      {children}
+    </>
   );
 }
+
+Header.propTypes = {
+  children: PropTypes.element,
+};

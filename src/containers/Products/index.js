@@ -1,13 +1,18 @@
+/* eslint-disable prefer-const */
 /* eslint-disable import/prefer-default-export */
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ProductsLogo from '../../assets/products-logo.svg';
 import { Container, ProductsImg, CategoryButton, CategoriesMenu, ProductsContainer } from './style';
 import api from '../../services/api';
 import { CardProducts } from '../../components';
 import formatCurrency from '../../utils/formatCurrency';
 
-export function Products(props) {
-  console.log(props);
+export function Products() {
+  let location = useLocation();
+  console.log(location);
+
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [filtredProducts, setFiltredProducts] = useState([]);

@@ -9,7 +9,7 @@ function PrivateRoute({ element, children, ...rest }) {
   if (!user) {
     return <Navigate replace to="/login" />;
   }
-  return children;
+  return <Header>{children}</Header>;
 }
 
 export default PrivateRoute;
