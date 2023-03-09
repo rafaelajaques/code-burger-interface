@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
-import { Login, Home, Products, Register, Cart } from '../containers';
+import { Login, Home, Products, Register, Cart, Admin } from '../containers';
 import PrivateRoute from './private-route';
 
 function MyRoutes() {
@@ -30,6 +30,15 @@ function MyRoutes() {
           element={
             <PrivateRoute>
               <Cart />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          isAdmin
+          path="/pedidos"
+          element={
+            <PrivateRoute>
+              <Admin />
             </PrivateRoute>
           }
         />

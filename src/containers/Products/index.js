@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import ProductsLogo from '../../assets/products-logo.svg';
 import { Container, ProductsImg, CategoryButton, CategoriesMenu, ProductsContainer } from './style';
 import api from '../../services/api';
-import { CardProducts } from '../../components';
+import { CardProducts, Header } from '../../components';
 import formatCurrency from '../../utils/formatCurrency';
 
 export function Products() {
@@ -61,6 +61,7 @@ export function Products() {
 
   return (
     <Container>
+      <Header />
       <ProductsImg src={ProductsLogo} alt="logo da home" />
       <CategoriesMenu>
         {categories &&

@@ -7,6 +7,7 @@ import { Container, HomeImg } from './style';
 export function Home() {
   return (
     <Container>
+      <Header />
       <HomeImg src={HomeLogo} alt="logo da home" />
       <CategoryCarousel />
       <OffersCarousel />
