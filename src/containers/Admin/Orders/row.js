@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-shadow */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/prefer-default-export */
@@ -19,7 +20,7 @@ import { ProductsImg, ReactSelectStyle } from './style';
 import api from '../../../services/api';
 import status from './order-status';
 
-function Row({ row }) {
+function Row({ row, setOrders, orders }) {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -27,6 +28,9 @@ function Row({ row }) {
     setIsLoading(true);
     try {
       await api.put(`orders/${id}`, { status });
+
+      const newOrders = orders.map((order) => (order._id === id ? { ...order, status } : order));
+      setOrders(newOrders);
     } catch (err) {
       console.error(err);
     } finally {
@@ -49,7 +53,7 @@ function Row({ row }) {
         <TableCell>{row.date}</TableCell>
         <TableCell>
           <ReactSelectStyle
-            options={status}
+            options={status.filter((sts) => sts.value !== 'Todos')}
             menuPortalTarget={document.body}
             placeholder="Status"
             defaultValue={status.find((option) => option.value === row.status) || null}
@@ -100,6 +104,8 @@ function Row({ row }) {
 }
 
 Row.propTypes = {
+  orders: PropTypes.array,
+  setOrders: PropTypes.func,
   row: PropTypes.shape({
     name: PropTypes.string.isRequired,
     orderId: PropTypes.string.isRequired,
