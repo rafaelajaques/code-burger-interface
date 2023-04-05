@@ -16,7 +16,7 @@ import api from '../../../services/api';
 import formatCurrency from '../../../utils/formatCurrency';
 
 function ListProducts() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState();
 
   useEffect(() => {
     async function loadOrders() {
@@ -48,21 +48,25 @@ function ListProducts() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product) => (
-              <TableRow key={product.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  {product.name}
-                </TableCell>
-                <TableCell>{formatCurrency(product.price)}</TableCell>
-                <TableCell align="center">{isOffer(product.offer)}</TableCell>
-                <TableCell align="center">
-                  <Img src={product.url} alt="imagem-produto" />
-                </TableCell>
-                <TableCell>
-                  <EditIconStyles />
-                </TableCell>
-              </TableRow>
-            ))}
+            {products &&
+              products.map((product) => (
+                <TableRow
+                  key={product.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {product.name}
+                  </TableCell>
+                  <TableCell>{formatCurrency(product.price)}</TableCell>
+                  <TableCell align="center">{isOffer(product.offer)}</TableCell>
+                  <TableCell align="center">
+                    <Img src={product.url} alt="imagem-produto" />
+                  </TableCell>
+                  <TableCell>
+                    <EditIconStyles />
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

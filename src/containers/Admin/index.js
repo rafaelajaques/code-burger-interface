@@ -14,7 +14,7 @@ export function Admin() {
 
   return (
     <Container>
-      <SideMenuAdmin />
+      <SideMenuAdmin pathname={pathname} />
       <ContainerItems>
         {pathname === paths.Orders && <Orders />}
         {pathname === paths.Products && <ListProducts />}
