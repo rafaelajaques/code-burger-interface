@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Login, Home, Products, Register, Cart, Admin } from '../containers';
 import PrivateRoute from './private-route';
+import paths from '../constants/paths';
 
 function MyRoutes() {
   return (
@@ -35,7 +36,7 @@ function MyRoutes() {
         />
         <Route
           isAdmin
-          path="/pedidos"
+          path={paths.Orders}
           element={
             <PrivateRoute>
               <Admin />
@@ -44,7 +45,7 @@ function MyRoutes() {
         />
         <Route
           isAdmin
-          path="/listar-produtos"
+          path={paths.Products}
           element={
             <PrivateRoute>
               <Admin />
