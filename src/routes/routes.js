@@ -52,6 +52,15 @@ function MyRoutes() {
             </PrivateRoute>
           }
         />
+        <Route
+          isAdmin
+          path={paths.NewProduct}
+          element={
+            <PrivateRoute>
+              <Admin />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );

@@ -8,6 +8,7 @@ import Orders from './Orders';
 import { SideMenuAdmin } from '../../components';
 import ListProducts from './ListProducts';
 import paths from '../../constants/paths';
+import NewProduct from './NewProduct';
 
 export function Admin() {
   const { pathname } = useLocation();
@@ -18,6 +19,7 @@ export function Admin() {
       <ContainerItems>
         {pathname === paths.Orders && <Orders />}
         {pathname === paths.Products && <ListProducts />}
+        {pathname === paths.NewProduct && <NewProduct />}
       </ContainerItems>
     </Container>
   );
