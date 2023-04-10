@@ -5,19 +5,43 @@ import ReactSelect from 'react-select';
 
 import { useForm, Controller } from 'react-hook-form';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Container, Label, Input, ButtonStyles, LabelUpload } from './style';
 import api from '../../../services/api';
+import { ErrorMessage } from '../../../components';
 
 function NewProduct() {
   const [fileName, setFileName] = useState('');
   const [categories, setCategories] = useState([]);
-  const { register, handleSubmit, control } = useForm();
+
+  const schema = Yup.object().shape({
+    name: Yup.string().required('Digite o nome do produto'),
+    price: Yup.string().required('Digite o preço do produto'),
+    category: Yup.string().required('Escolha uma categoria'),
+    file: Yup.mixed()
+      .test('required', 'Carregue um arquivo', (value) => value?.length > 0)
+      .test('fileSize', 'Carregue arquivos de até 2MB', (value) => value[0]?.size <= 200000)
+      .test(
+        'type',
+        'Carregue arquivos JPEG ou PNG',
+        (value) => value[0]?.type === 'image/jpeg' || value[0]?.type === 'image/png'
+      ),
+  });
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const onSubmit = (data) => console.log(data);
 
   useEffect(() => {
     async function loadCategories() {
       const { data } = await api.get('categories');
-      console.log(data);
+
       setCategories(data);
     }
     loadCategories();
@@ -26,40 +50,53 @@ function NewProduct() {
   return (
     <Container>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
-        <Label>Nome</Label>
-        <Input type="text" {...register('name')} />
+        <div>
+          <Label>Nome</Label>
+          <Input type="text" {...register('name')} />
+          <ErrorMessage>{errors.name?.message}</ErrorMessage>
+        </div>
 
-        <Label>Preço</Label>
-        <Input type="number" {...register('price')} />
+        <div>
+          <Label>Preço</Label>
+          <Input type="number" {...register('price')} />
+          <ErrorMessage>{errors.price?.message}</ErrorMessage>
+        </div>
 
-        <LabelUpload>
-          {fileName || (
-            <>
-              <CloudUploadIcon />
-              Carregue a imagem do produto
-            </>
-          )}
+        <div>
+          <LabelUpload>
+            {fileName || (
+              <>
+                <CloudUploadIcon />
+                Carregue a imagem do produto
+              </>
+            )}
 
-          <input
-            type="file"
-            accept="image/png, image/jpeg"
-            {...register('file')}
-            onChange={(value) => setFileName(value.target.files[0]?.name)}
-          />
-        </LabelUpload>
-        <Controller
-          name="category_id"
-          control={control}
-          render={({ field }) => (
-            <ReactSelect
-              {...field}
-              options={categories}
-              getOptionLabel={(cat) => cat.name}
-              getOptionValue={(cat) => cat.id}
-              placeholder="Escolha a categoria"
+            <input
+              type="file"
+              accept="image/png, image/jpeg"
+              {...register('file')}
+              onChange={(value) => setFileName(value.target.files[0]?.name)}
             />
-          )}
-        />
+          </LabelUpload>
+          <ErrorMessage>{errors.file?.message}</ErrorMessage>
+        </div>
+
+        <div>
+          <Controller
+            name="category"
+            control={control}
+            render={({ field }) => (
+              <ReactSelect
+                {...field}
+                options={categories}
+                getOptionLabel={(cat) => cat.name}
+                getOptionValue={(cat) => cat.id}
+                placeholder="Escolha a categoria"
+              />
+            )}
+          />
+          <ErrorMessage>{errors.category?.message}</ErrorMessage>
+        </div>
 
         <ButtonStyles>Adicionar Produto</ButtonStyles>
       </form>
@@ -75,7 +112,7 @@ Input
 Não controlados: não são controlados por ninguém
 Ex: um input que guarda o seu valor. Auto-suficiente
 
-Controlados: controlados por algum outro componente ou não são auto-suficiente. 
+Controlados: controlados por algum outro componente ou não auto-suficientes. 
 Necessita guardar em uma variável.
 
 */

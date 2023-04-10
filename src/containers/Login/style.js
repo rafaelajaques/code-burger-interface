@@ -74,11 +74,3 @@ export const SignInLink = styled.p`
     text-decoration: underline;
   }
 `;
-
-export const ErrorMessage = styled.p`
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  color: #cc1717;
-  margin-top: 2px;
-`;

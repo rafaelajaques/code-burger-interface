@@ -6,16 +6,8 @@ import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
-import {
-  Container,
-  LoginImage,
-  ContainerItems,
-  Label,
-  Input,
-  SignInLink,
-  ErrorMessage,
-} from './style';
-import { Button } from '../../components';
+import { Container, LoginImage, ContainerItems, Label, Input, SignInLink } from './style';
+import { Button, ErrorMessage } from '../../components';
 import LoginImg from '../../assets/login-image.svg';
 import Logo from '../../assets/logo.svg';
 import { useUser } from '../../hooks/UserContext';
