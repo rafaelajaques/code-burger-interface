@@ -61,6 +61,15 @@ function MyRoutes() {
             </PrivateRoute>
           }
         />
+        <Route
+          isAdmin
+          path={paths.EditProduct}
+          element={
+            <PrivateRoute>
+              <Admin />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );

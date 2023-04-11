@@ -11,12 +11,15 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { useNavigate } from 'react-router-dom';
 import { Container, Img, EditIconStyles } from './style';
 import api from '../../../services/api';
 import formatCurrency from '../../../utils/formatCurrency';
+import paths from '../../../constants/paths';
 
 function ListProducts() {
   const [products, setProducts] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadOrders() {
@@ -32,6 +35,10 @@ function ListProducts() {
       return <CheckBoxIcon style={{ color: '#228B22' }} />;
     }
     return <CancelIcon style={{ color: '#CC1717' }} />;
+  }
+
+  function editProduct(product) {
+    navigate(paths.EditProduct, { state: product });
   }
 
   return (
@@ -63,7 +70,7 @@ function ListProducts() {
                     <Img src={product.url} alt="imagem-produto" />
                   </TableCell>
                   <TableCell>
-                    <EditIconStyles />
+                    <EditIconStyles onClick={() => editProduct(product)} />
                   </TableCell>
                 </TableRow>
               ))}
